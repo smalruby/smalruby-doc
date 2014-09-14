@@ -7,15 +7,80 @@
    * 0.2版: 2014年09月12日
      * 本多担当分を追記
 
-## 自己紹介 (高尾、本多)
+## タイトル (高尾)
+
+Kids, Ruby, Fun!
+
+Introduction of the Smalruby and the Ruby Programming Shounendan
+
+- - -
+
+Thank you for attending this presentation, let's begin.
+
+## 自己紹介:高尾 (高尾)
 
 高尾宏治/Kouji Takao/@takaokouji/kouji@smalruby.jp
 
+Rubyプログラミング少年団
+
+- - -
+
+I am Kouji Takao, a leader of the Ruby Programming Shounendan, and one of a CRuby commiter.
+
+## 自己紹介:本多 (本多)
+
 本多展幸/Nobuyuki Honda/@nobyuki/nobyuki@smalruby.jp
 
-## NaCl (高尾)
+Rubyプログラミング少年団
 
-提供はNaCl
+- - -
+
+I am Nobuyuki Honda, a chief education officer of the Ruby Programming Shounendan.
+
+It was was a short time, speech *in English* This is the end :-)
+
+これからは日本語で話をします（笑）
+
+## 提供 (高尾)
+
+Sponsored by NaCl; Network Applied Communication Laboratory Ltd.
+
+- - -
+
+私たちは二人とも株式会社ネットワーク応用通信研究所、通称NaClの研究員です。このプレゼンテーションに関する交通費・宿泊費はすべてNaClに負担してもらっています。
+NaClはまつもとさんが在籍しているということで有名ですが、せっかくの機会なので少しだけNaClの紹介をします。
+
+## NaCl1 (高尾)
+
+NaCl = SIer
+
+- - -
+
+NaClの生業(なりわい)はSystem Integraterです。
+
+## NaCl2 (高尾)
+
+NaCl = about 30 ruby engineer (TODO)
+
+- - -
+
+NaClの約60人の従業員のうち、その半分である30人くらいはRubyを使ったシステム開発に携わっています。
+
+## NaCl3 (高尾)
+
+NaCl = 5 CRuby committer
+
+- - -
+
+NaClにはまつもとさんを含め、5人のRubyコミッタが在籍しています。
+
+## NaCl4 (高尾)
+
+Come to visit out company♪
+
+- - -
+
+島根県松江市という、のどかな地方都市でシステム開発をしていることを感じてもらえると思いますので、興味がある方は遊びに来てくださいね。
 
 ## Rubyプログラミング少年団 (高尾)
 
