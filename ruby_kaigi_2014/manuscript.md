@@ -215,33 +215,58 @@ Smalruby
 
 そこで、私たちはスモウルビーを開発しました。
 
-## デモ (高尾)
+## デモ (高尾、本多)
 
 Demo
 
 - - -
 
 早速ですが、スモウルビーがどんなものか、お見せしますね。
+
 (キャラクターを選んで、命令ブロックを配置します。Rubyボタンを、実行ボタンを押すと、バックグラウンドでrubyを実行して、キャラクターが動きます。)
 
-## スモウルビーのアーキテクチャ (高尾)
+これがスモウルビーです。
 
-Rails, Blockly, DXRuby, dxruby_sdl + Ruby/SDL, Arduino + Dino
+## スモウルビーのアーキテクチャ1 (高尾)
 
-## 動作環境 (高尾)
-
-Windows
-Mac OS X
-Linux (Raspberry Pi)
+Visual Editor: Rails, Blockly
+Runtime: DXRuby, dxruby_sdl + Ruby/SDL
+Robotics: Arduino + Dino
 
 - - -
 
+スモウルビーのアーキテクチャはこんな感じです。
 
+## スモウルビーのアーキテクチャ2 (高尾)
 
-## スタンドアローンなRails
+Visual Editor
 
-* gem以下にアプリケーションの実態
-* 書き換えるデータは~/.smalruby-editor
+Rails, Blockly
+
+- - -
+
+スモウルビーのエディタ機能は、Railsアプリケーションとして実装しています。
+命令ブロックの組み合わせでプログラムを作ったり、そこからRubyのソースコードを生成する機能は、Blocklyというライブラリを使って実現しています。
+
+## スモウルビーのアーキテクチャ3 (高尾)
+
+Runtime
+
+DXRuby, dxruby_sdl + Ruby/SDL
+
+- - -
+
+スモウルビーで作成したプログラムは、WindowsではDXRuby、Mac OS XとLinuxではDXRuby互換APIを提供するdxruby_sdlを利用して、2Dグラフィックス、音楽の再生、イベントハンドリングを実現しています。
+
+## スモウルビーのアーキテクチャ4 (高尾)
+
+Robotics
+
+Arduino + Dino
+
+- - -
+
+また、今回は時間の都合で紹介できませんが、Arduinoと、ArduinoをRubyから制御できるDinoというライブラリを使って、ロボット制御を実現しています。
 
 ## Blockly
 
