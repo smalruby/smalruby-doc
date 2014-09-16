@@ -288,18 +288,125 @@ Arduino + Dino
 
 また、今回は時間の都合で紹介できませんが、Arduinoと、ArduinoをRubyから制御できるDinoというライブラリを使って、ロボット制御を実現しています。
 
-## Blockly
+これがスモウルビーのアーキテクチャです。
 
-Google製
-とてもよくできている
-Visual Editor
+## Blockly1 (高尾)
+
+ブロック -> Ruby
+
+- - -
+
+スモウルビーを初めて見た方の多くは、命令ブロックの組み合わせでプログラムを作ることができることに驚かれます。
+Rubyってこんなに簡単なんですか！？とかね。
+
+## Blockly2 (高尾)
+
+Blockly - A visual programming editor
+
+- - -
+
+実はスモウルビーの命令ブロックに関する処理は、Google製のBlocklyというJavaScriptのライブラリを使って実現しています。
+
+## Blockly2 (高尾)
+
+Blockly
+Google Closure library
+
+- - -
+
+BlocklyはGoogle Closure libraryを使って開発されており、依存関係も少なく、コードサイズも小さく、インストールも簡単で、ウェブブラウザで動作する visual programming editor を開発するにはとても使いやすいものになっています。
+
+## Blockly3 (高尾)
+
+Code.org
+MIT App Inventor
+
+- - -
+
+また、Code.org でプログラミング教育に使われていたり、MIT App InventorというAndroidアプリ用のIDEで使われていたりするなど、動作実績も十分にあります。
+
+## 命令ブロックの定義 (高尾)
+
+```JavaScript
+Blockly.Blocks['motion_move'] = {
+  init: function() {
+    this.setColour(208);
+    this.interpolateMsg('%1歩動かす',
+      ['STEP', ['Number'], Blockly.ALIGN_RIGHT],
+      Blockly.ALIGN_RIGHT);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  }
+};
+```
+
+- - -
+
+それでは、実際にどのようにして命令ブロックを定義するのか見てみましょう。
+
+これは先ほどのデモでお見せしたキャラクターを「10歩動かす」という命令ブロックの定義です。
+
+まずは命令ブロックに'motion_move'という名前をつけて、それを表現するオブジェクトを代入します。
+そのオブジェクトのinitプロパティに命令ブロックの初期化処理を記述します。
+
+ここでは、
+(setColour)青色
+(interpolateMsg)STEPという名前で数値を表現した命令ブロックを設定できること、そのラベルが「～歩動かす」であること
+(setInputsInline)それらを横一列に表示すること
+(setPreviousStatement)この命令ブロックの前に、命令ブロックをくっつけられること
+(setNextStatement)この命令ブロックのあとに、命令ブロックをくっつけられること
+を指定しています。
+
+これだけで、命令ブロックを定義できます。
 
 ## 命令ブロック->Ruby
 
-Blocklyが提供している命令ブロックを特定の言語に変換するためのフレームワー
-クを利用して、命令ブロックからRubyのソースコードを生成している。
+```JavaScript
+Blockly.Ruby['motion_move'] = function(block) {
+  var arg =
+    Blockly.Ruby.valueToCode(this,
+      'STEP',
+      Blockly.Ruby.ORDER_NONE);
+  return 'move(' + arg + ')'
+};
+```
 
-(ここで具体的なJavaScriptのコードを紹介する)
+- - -
+
+命令ブロックからRubyのコードを生成するには、先ほど定義した命令ブロックのインスタンスを引数にとり、Rubyのコードを表現した文字列を返すメソッドを定義します。
+
+ここでは、STEPに指定した命令ブロックの値を取り出して、move( その値 ) という文字列を作って、それを返しています。
+
+インデントの調整や演算子の優先順位によって括弧でくくったりするのは、Blocklyのフレームワークがやってくれます。
+
+## 命令ブロックの定義とコード生成
+
+```JavaScript
+Blockly.Blocks['motion_move'] = {
+  init: function() {
+    this.setColour(208);
+    this.interpolateMsg('%1歩動かす',
+      ['STEP', ['Number'], Blockly.ALIGN_RIGHT],
+      Blockly.ALIGN_RIGHT);
+    this.setInputsInline(true);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+  }
+};
+
+Blockly.Ruby['motion_move'] = function(block) {
+  var arg =
+    Blockly.Ruby.valueToCode(this,
+      'STEP',
+      Blockly.Ruby.ORDER_NONE);
+  return 'move(' + arg + ')'
+};
+```
+
+- - -
+
+このようにスモウルビーでは、Blocklyのフレームワークを使って、命令ブロックの定義、命令ブロックからRubyのコード生成を実現しています。
 
 ## Ruby->命令ブロック
 
