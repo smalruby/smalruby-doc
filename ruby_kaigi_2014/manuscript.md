@@ -72,7 +72,7 @@ NaCl = 6 CRuby committer
 
 - - -
 
-NaClにはまつもとさんを含め、5人のRubyコミッタが在籍しています。
+NaClにはまつもとさんを含め、6人のCRubyコミッタが在籍しています。
 
 ## NaCl4 (高尾)
 
