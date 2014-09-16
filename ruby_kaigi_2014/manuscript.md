@@ -84,7 +84,7 @@ Come to visit out company♪
 
 さて、それでは本題に戻りますね。
 
-## 再び、タイトル (本多)
+## 再び、タイトル (高尾)
 
 Kids, Ruby, Fun!
 
