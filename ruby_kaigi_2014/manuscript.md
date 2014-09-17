@@ -78,7 +78,7 @@ NaClにはまつもとさんを含め、6人のCRubyコミッタが在籍して�
 
 ## NaCl4 (高尾)
 
-Come to visit out company♪
+Please come to visit out NaCl♪
 
 - - -
 
@@ -99,7 +99,9 @@ Introduction of the Smalruby and the Ruby Programming Shounendan
 ## Rubyプログラミング少年団1 (高尾)
 
 Rubyプログラミング少年団
+
 「一人でも多くの青少年にプログラミングの喜びを！」
+
 「プログラミングを通じて青少年とネット社会との関わり方を考える組織を地域社会の中に！」
 
 - - -
@@ -111,6 +113,7 @@ Rubyプログラミング少年団
 ## Rubyプログラミング少年団2 (高尾)
 
 毎月第3日曜日
+
 一日Rubyプログラミング体験 in 松江
 
 - - -
@@ -138,7 +141,9 @@ Rubyプログラミング少年団
 Overseas countries
 
 U.S.: 20,000 Teachers
+
 U.K.: Compulsory education (義務教育)
+
 Estonia, Finland, Singapore...
 
 - - -
@@ -211,7 +216,7 @@ Rubyの
  * オブジェクト指向
  * ガーベージコレクタ
 
-といった特徴によって、コンピュータのことをあまり意識することなく、やりたいことを表現することができます。
+といった特徴によって、子供たちでも、コンピュータのことをあまり意識することなく、やりたいことを表現することができます。
 
 ## スモウルビー2 (高尾)
 
@@ -246,7 +251,9 @@ Demo
 ## スモウルビーのアーキテクチャ1 (高尾)
 
 Visual Editor: Rails, Blockly
+
 Runtime: DXRuby, dxruby_sdl + Ruby/SDL
+
 Robotics: Arduino + Dino
 
 - - -
@@ -306,6 +313,7 @@ Blockly - A visual programming editor
 ## Blockly2 (高尾)
 
 Blockly
+
 Google Closure library
 
 - - -
@@ -315,6 +323,7 @@ BlocklyはGoogle Closure libraryを使って開発されており、依存関係
 ## Blockly3 (高尾)
 
 Code.org
+
 MIT App Inventor
 
 - - -
@@ -388,31 +397,8 @@ Blockly.Ruby['motion_move'] = function(block) {
 
 ## 命令ブロックの定義とコード生成 (高尾)
 
-`app/assets/javascripts/blocks/motion.js.coffee.erb`
-
-```JavaScript
-Blockly.Blocks['motion_move'] = {
-  init: function() {
-    this.setColour(208);
-    this.interpolateMsg('%1歩動かす',
-      ['STEP', ['Number'], Blockly.ALIGN_RIGHT],
-      Blockly.ALIGN_RIGHT);
-    this.setInputsInline(true);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-  }
-};
-
-Blockly.Ruby['motion_move'] = function(block) {
-  var arg =
-    Blockly.Ruby.valueToCode(this,
-      'STEP',
-      Blockly.Ruby.ORDER_NONE);
-  return 'move(' + arg + ')';
-};
-```
-
-※実際はCoffeeScriptで記述
+Blockly provide
+Instruction block and code generator framework.
 
 - - -
 
@@ -420,18 +406,19 @@ Blockly.Ruby['motion_move'] = function(block) {
 
 ## 命令ブロックによるプログラミングの限界 (高尾)
 
-命令ブロックによるプログラミング
+Programming with Instruction block
 
-もっと難しいことをしたかった
+->
+
+Children wanted to be more difficult...
 
 - - -
 
-これで命令ブロックを使ったプログラミングができるようになります。
-でも、これまでプログラミングを教えてきたなかで、命令ブロックによるプログラミングにはとても大きな問題があることに気が付きました。
+これで命令ブロックを使ってRubyのプログラミングができるようになりました。
 
-命令ブロックでのプログラミングはおもしろくなく、すぐに飽きてしまうのです。実際に、自分がやってみると、簡単なデモ程度のものはいいのですが、ある程度の規模になると命令ブロックでは作る気にはなれませんでした。
+そして、実際に子供たちに使ってもらったところ、面白いことがわかりました。
 
-また、命令ブロックだけのプログラミングを体験した子供たちの中には、「もっと難しいことをやりたかった...」という感想を持つ子もいました。
+素数を求めたいとか、やりたいことが決まっているなど、本格的にプログラミングをやりたい子どもは、早いタイミングで命令ブロックによるプログラミングでは満足できなくなり、コードを直接入力したいというのです。
 
 ## Ruby->命令ブロック1 (高尾)
 
@@ -439,7 +426,7 @@ move(10) <-> ブロック
 
 - - -
 
-なので、スモウルビーではRubyのコードから命令ブロックに変換できるようにしていますし、この機能に実現にこだわっていきたいと考えています。
+このような経験から、スモウルビーではRubyのコードから命令ブロックに変換できるようにしました。これは他のVisual Programming Editorにはあまり実装されていないスモウルビーの特徴的な機能です。
 
 しかしながら、Blocklyはソースコードから命令ブロックに変換するためのフレームワークは提供していませんので、独自に実装する必要がありました。
 
@@ -449,7 +436,15 @@ Ruby -> サーバ -> XML -> クライアント -> Blockly 読み込み -> 命令
 
 - - -
 
-じゃあ、それはRubyで！ってことで、RubyのソースコードをいったんRailsに送って、それを解析して、命令ブロックを表現したXMLに変換して、ブラウザに返す。それを読み込んで命令ブロックとして表示する、というようにして実現しています。
+じゃあ、それ、Rubyで！ってことで、スモウルビーでは、
+
+ * RubyのソースコードをいったんRailsに送って
+ * それを解析して
+ * 命令ブロックを表現したXMLに変換して
+ * ブラウザに返す。
+ * それを読み込んで命令ブロックとして表示する、
+
+というようにして、Rubyのソースコードから命令ブロックへの変換を実現しています。
 
 ## Ruby->命令ブロック3 (高尾)
 
@@ -459,7 +454,7 @@ Currently: Regexp
 
 - - -
 
-そのためには任意のRubyのソースコードをきちんと解析する必要があります。
+このとき、任意のRubyのソースコードをきちんと解析する必要があります。
 
 開発当初は、RipperやRubyParserを使えばできるね♪と考えていたのですが、プログラムが不完全でシンタックスエラーを含む状態だったりすることがあり、実装に時間がかかることがわかりました。そこで、現在は、正規表現で解析しています。
 
@@ -547,7 +542,7 @@ https://github.com/smalruby
 
 Welcome Workshop Owners
 
-Facebook:高尾宏治 or e-mail: kouji@smalruby.jp
+Facebook:Rubyプログラミング少年団 or e-mail: contact@smalruby.jp
 
 - - -
 
@@ -567,12 +562,12 @@ Facebook / Twitter / http://smalruby.jp
 
 ## おわり (本多)
 
-プログラミング = 最高の道具
+Ruby = 最高の道具
 
 - - -
 
 自分の生活で使う道具を自分で直すことができる、また、あらたな問題に直面したときにその問題を解決するための道具を自分で作り出すことができることが非常に重要だと考えています。このような価値観はオープンソースソフトウェアに関わっている皆さんには共感していただけるのではないかと思います。
 
-プログラミングは問題を解決するための汎用的で強力なツールなので、私たちはこの最高の道具を子ども達に授けたいという想いで活動に取り組んでいきます。
+Rubyは問題を解決するための汎用的で強力なツールなので、私たちはこの最高の道具を子ども達に授けたいという想いで活動に取り組んでいきます。
 
 本日は、どうもありがとうございました。
