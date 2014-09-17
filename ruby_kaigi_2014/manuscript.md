@@ -327,6 +327,8 @@ MIT App Inventor
 
 ## 命令ブロックの定義 (高尾)
 
+`app/assets/javascripts/blocks/motion.js.coffee.erb`
+
 ```JavaScript
 Blockly.Blocks['motion_move'] = {
   init: function() {
@@ -340,6 +342,8 @@ Blockly.Blocks['motion_move'] = {
   }
 };
 ```
+
+※実際はCoffeeScriptで記述
 
 - - -
 
@@ -351,16 +355,20 @@ Blockly.Blocks['motion_move'] = {
 そのオブジェクトのinitプロパティに命令ブロックの初期化処理を記述します。
 
 ここでは、
-(setColour)青色
-(interpolateMsg)STEPという名前で数値を表現した命令ブロックを設定できること、そのラベルが「～歩動かす」であること
-(setInputsInline)それらを横一列に表示すること
-(setPreviousStatement)この命令ブロックの前に、命令ブロックをくっつけられること
-(setNextStatement)この命令ブロックのあとに、命令ブロックをくっつけられること
+
+ * (setColour)青色
+ * (interpolateMsg)STEPという名前で数値を表現した命令ブロックを設定できること、そのラベルが「～歩動かす」であること
+ * (setInputsInline)それらを横一列に表示すること
+ * (setPreviousStatement)この命令ブロックの前に、命令ブロックをくっつけられること
+ * (setNextStatement)この命令ブロックのあとに、命令ブロックをくっつけられること
+
 を指定しています。
 
 これだけで、命令ブロックを定義できます。
 
-## 命令ブロック->Ruby
+## 命令ブロック->Ruby (高尾)
+
+`app/assets/javascripts/blocks/motion.js.coffee.erb`
 
 ```JavaScript
 Blockly.Ruby['motion_move'] = function(block) {
@@ -368,9 +376,11 @@ Blockly.Ruby['motion_move'] = function(block) {
     Blockly.Ruby.valueToCode(this,
       'STEP',
       Blockly.Ruby.ORDER_NONE);
-  return 'move(' + arg + ')'
+  return 'move(' + arg + ')';
 };
 ```
+
+※実際はCoffeeScriptで記述
 
 - - -
 
@@ -380,7 +390,9 @@ Blockly.Ruby['motion_move'] = function(block) {
 
 インデントの調整や演算子の優先順位によって括弧でくくったりするのは、Blocklyのフレームワークがやってくれます。
 
-## 命令ブロックの定義とコード生成
+## 命令ブロックの定義とコード生成 (高尾)
+
+`app/assets/javascripts/blocks/motion.js.coffee.erb`
 
 ```JavaScript
 Blockly.Blocks['motion_move'] = {
@@ -400,19 +412,93 @@ Blockly.Ruby['motion_move'] = function(block) {
     Blockly.Ruby.valueToCode(this,
       'STEP',
       Blockly.Ruby.ORDER_NONE);
-  return 'move(' + arg + ')'
+  return 'move(' + arg + ')';
 };
 ```
+
+※実際はCoffeeScriptで記述
 
 - - -
 
 このようにスモウルビーでは、Blocklyのフレームワークを使って、命令ブロックの定義、命令ブロックからRubyのコード生成を実現しています。
 
-## Ruby->命令ブロック
+## 命令ブロックによるプログラミングの限界 (高尾)
 
-スモウルビーの特徴のひとつであるRubyのソースコードから命令ブロックに変換する処理は、いろいろ検討して実現方法が簡単だった正規表現のパターンマッチによる置き換えで実現している。現行のやりかただと、対象となるRubyのソースコードのシンタックスが間違っていることがある。そのときにもある程度は命令ブロックに変換できるのがいいところだ。
+命令ブロックによるプログラミング
 
-(ここで具体的なRubyのコードを紹介する)
+もっと難しいことをしたかった
+
+- - -
+
+これで命令ブロックを使ったプログラミングができるようになります。
+でも、これまでプログラミングを教えてきたなかで、命令ブロックによるプログラミングにはとても大きな問題があることに気が付きました。
+
+命令ブロックでのプログラミングはおもしろくなく、すぐに飽きてしまうのです。実際に、自分がやってみると、簡単なデモ程度のものはいいのですが、ある程度の規模になると命令ブロックでは作る気にはなれませんでした。
+
+また、命令ブロックだけのプログラミングを体験した子供たちの中には、「もっと難しいことをやりたかった...」という感想を持つ子もいました。
+
+## Ruby->命令ブロック1 (高尾)
+
+move(10) <-> ブロック
+
+- - -
+
+なので、スモウルビーではRubyのコードから命令ブロックに変換できるようにしていますし、この機能に実現にこだわっていきたいと考えています。
+
+しかしながら、Blocklyはソースコードから命令ブロックに変換するためのフレームワークは提供していませんので、独自に実装する必要がありました。
+
+## Ruby->命令ブロック2 (高尾)
+
+Ruby -> サーバ -> XML -> クライアント -> Blockly 読み込み -> 命令ブロック
+
+- - -
+
+じゃあ、それはRubyで！ってことで、RubyのソースコードをいったんRailsに送って、それを解析して、命令ブロックを表現したXMLに変換して、ブラウザに返す。それを読み込んで命令ブロックとして表示する、というようにして実現しています。
+
+## Ruby->命令ブロック3 (高尾)
+
+At first: Ripper or RubyParser
+
+Currently: Regexp
+
+- - -
+
+そのためには任意のRubyのソースコードをきちんと解析する必要があります。
+
+開発当初は、RipperやRubyParserを使えばできるね♪と考えていたのですが、プログラムが不完全でシンタックスエラーを含む状態だったりすることがあり、実装に時間がかかることがわかりました。そこで、現在は、正規表現で解析しています。
+
+## Ruby->命令ブロック4 (高尾)
+
+`app/models/concerns/ruby_to_block/block/motion_move.rb`
+
+```Ruby
+module RubyToBlock
+  module Block
+    class MotionMove < CharacterMethodCall
+      blocknize '^\s*' + CHAR_RE + 'move\((.+)\)\s*$',
+                statement: true, inline: true
+
+      def self.process_match_data(md, context)
+        md2 = regexp.match(md[type])
+        add_character_method_call_block(context, md2[1], new, STEP: md2[2])
+        true
+      end
+    end
+  end
+end
+```
+
+- - -
+
+これが、「～歩動かす」命令ブロックに関するものです。
+
+blocknizeクラスメソッドの第1引数にmove(値)を示す正規表現を指定しています。
+
+また、process_match_dataクラスメソッドで、move(10)から命令ブロックに変換し、context引数に解析結果を格納しています。
+
+add_character_method_call_blockクラスメソッドでは、move(10)が記述されたコンテキストによって、レシーバがどのキャラクターなのかを判断しています。
+
+このように、各APIに対応するクラスを1つずつ定義して、Rubyのソースコードから命令ブロックに変換できるようにしています。割と大変ですね。
 
 ## Welcome developer
 
