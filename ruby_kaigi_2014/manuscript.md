@@ -1,11 +1,13 @@
 # 発表原稿「Kids, Ruby, Fun!: Introduction of the Smalruby and the Ruby Programming Shounendan」
 
-    * 高尾宏治(Kouji Takao) <kouji@smalruby.jp>, 本多展幸(Nobuyuki Honda) <nobyuki@smalruby.jp>
- * 0.2版 - 2014年09月12日
+ * 高尾宏治(Kouji Takao) <kouji@smalruby.jp>, 本多展幸(Nobuyuki Honda) <nobyuki@smalruby.jp>
+ * 0.3版 - 2014年09月17日
  * 改版履歴
    * 0.1版: 2014年09月05日
    * 0.2版: 2014年09月12日
      * 本多担当分を追記
+   * 0.3版: 2014年09月17日
+     * すべて記述
 
 ## タイトル (高尾)
 
