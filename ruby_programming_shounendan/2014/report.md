@@ -46,7 +46,7 @@
 
 でした。
 
-写真付きのレポートは http://localhost:4567/blog/tags/trial.html からご覧いただけます。
+写真付きのレポートは [http://smalruby.jp/blog/tags/trial.html](http://smalruby.jp/blog/tags/trial.html) からご覧いただけます。
 
 ## Ruby.Jr
 
@@ -97,6 +97,8 @@
  * ２７名（予定）
 
 でした。
+
+写真付きのレポートは [http://smalruby.jp/blog/tags/progshoudojo.html](http://smalruby.jp/blog/tags/progshoudojo.html) からご覧いただけます。
 
 ## 理事会
 
