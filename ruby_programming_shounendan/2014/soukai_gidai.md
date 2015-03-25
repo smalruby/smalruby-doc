@@ -22,9 +22,11 @@
 ## ４．審議事項
 
  * 第１号議案　平成２６年度の事業報告及び決算報告に関する件
-   * []()
+   * [平成２６年度事業報告書（案）](https://github.com/smalruby/smalruby-doc/blob/master/ruby_programming_shounendan/2014/report.md)
+   * [平成２６年度収支報告書（案）](https://github.com/smalruby/smalruby-doc/blob/master/ruby_programming_shounendan/2014/finance_statement.md)
  * 第２号議案　平成２７年度の事業計画及び収支予算に関する件
-   * 
+   * [平成２７年度事業計画書（案）](https://github.com/smalruby/smalruby-doc/blob/master/ruby_programming_shounendan/2015/plan.md)
+   * [平成２７年度予算書（案）](https://github.com/smalruby/smalruby-doc/blob/master/ruby_programming_shounendan/2015/budget.md)
  * 第３号議案　平成２７年度の役員に関する件
    * 
  * 第４号議案　NPO法人の設立に関する件
