@@ -45,3 +45,7 @@
      * 活動会員：１，０００円（税込）
      * 受講会員：１，０００円（税込）
      * 賛助会員：１口１０，０００円（税込）（何口でも可能）
+
+## 出席表、委任状、文章票決票
+
+[こちらのGoogleフォームから回答ください。](https://docs.google.com/forms/d/11SKBs4DalC-Ap3gGZNwIoX9UrBySNHWct3fX8rhHQmw/viewform)
