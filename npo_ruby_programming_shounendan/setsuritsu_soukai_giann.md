@@ -6,7 +6,7 @@ Rubyプログラミング少年団　理事長　高尾　宏治
 
 平成２７年６月１５日にNPO法人Rubyプログラミング少年団の設立総会を下記の通り開催いたします。つきましては、平成２７年６月１２日　１７：００までに出席可否、および、ご出席いただけない場合は委任状、もしくは文書表決票を以下のGoogleフォームへの回答としてご連絡ください。
 
-TODO: フォーム
+https://docs.google.com/forms/d/1zG6sf_AagNj-7c8O0p6yRWQ64zgf5ZDr0U9iNBEVNEs/viewform?usp=send_form
 
 ## １．日時
 
