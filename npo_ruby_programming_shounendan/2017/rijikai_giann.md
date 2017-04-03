@@ -56,7 +56,7 @@ NPO法人Rubyプログラミング少年団の理事のみなさま
 
 ### 第３号議案　謝金に関する規程の改定の件
 
-[謝金に関する規程（案）]() を配布し、審議する。
+[謝金に関する規程（案）](https://gitprint.com/smalruby/smalruby-doc/blob/master/npo_ruby_programming_shounendan/2017/shakin_kitei.md) を配布し、審議する。
 
 ### その他
 
